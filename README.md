@@ -1,6 +1,6 @@
 
 ## x86disass
-A X86 disassembler written in C. Support rewriting instruction.
+An x86 disassembler written supporting instruction rewriting. (Ring0 instructions ar enost supported as of now)
 ###### Ring0 instructions are not supported
 
 #### Build
@@ -60,3 +60,9 @@ LEA @ 0x1000 points to 0x4ba4
  + Modified
 48 8d 05 37 13 00 00          LEA     RAX, QWORD ptr [RIP+0x1337]
 ```
+
+#### Resources used
+
+[X86-64 Instruction Encoding](https://wiki.osdev.org/X86-64_Instruction_Encoding)
+[X86 Opcode and Instruction Reference Home](http://ref.x86asm.net/geek64.html)
+[Online x86 / x64 Assembler and Disassembler](https://defuse.ca/online-x86-assembler.htm)
