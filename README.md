@@ -15,6 +15,8 @@ sudo make install # + #include <x86disass/disass.h>
 #include "./disass.h"
 
 void main() {
+	do_disass((void*)mmap, 0xd9);
+
 	instr_dat_t in;
 	__u8 *sc = "\x48\x8d\x05\x9d\x3b\x00\x00";
 	puts(" + Source instr");
@@ -63,6 +65,6 @@ LEA @ 0x1000 points to 0x4ba4
 
 #### Resources used
 
-[X86-64 Instruction Encoding](https://wiki.osdev.org/X86-64_Instruction_Encoding)
-[X86 Opcode and Instruction Reference Home](http://ref.x86asm.net/geek64.html)
-[Online x86 / x64 Assembler and Disassembler](https://defuse.ca/online-x86-assembler.htm)
+[X86-64 Instruction Encoding](https://wiki.osdev.org/X86-64_Instruction_Encoding).
+[X86 Opcode and Instruction Reference Home](http://ref.x86asm.net/geek64.html).
+[Online x86 / x64 Assembler and Disassembler](https://defuse.ca/online-x86-assembler.htm).
