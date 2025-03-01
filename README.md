@@ -1,7 +1,7 @@
 
 ## x86disass
-An x86 disassembler written supporting instruction rewriting. (Ring0 instructions ar enost supported as of now)
-###### Ring0 instructions are not supported
+An x86 disassembler written supporting instruction rewriting.
+###### Ring0 instructions are not supported as of now
 
 #### Build
 ```shell
