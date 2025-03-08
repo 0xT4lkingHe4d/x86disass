@@ -6,13 +6,13 @@ An x86_64 and x86(partially) disassembler written C
 #### To Build
 ```shell
 make example; ./main
-sudo make install # + #include <x86disass/disass.h>
+sudo make install
 ```
 ### Example
 ```c
 #include <stdio.h>
 #include <sys/mman.h>
-#include "./disass.h"
+#include <x86disass/disass.h>
 
 void main() {
 	do_disass((void*)mmap, 0xd9);
