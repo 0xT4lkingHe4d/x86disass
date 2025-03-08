@@ -3,8 +3,8 @@ BDIR = ./build
 CFLAGS = -w -fPIC
 
 all: library
-example: library
-	gcc main.c $(BDIR)/*.o -o ./main
+example:
+	gcc main.c -lx86disass -o ./main
 
 install: library
 	sudo cp -r $(PWD) /usr/local/include/
