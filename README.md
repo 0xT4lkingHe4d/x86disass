@@ -1,9 +1,9 @@
 
 ## x86disass
-An x86 disassembler written supporting instruction rewriting.
+An x86_64 and x86(partially) disassembler written C
 ###### Ring0 instructions are not supported as of now
 
-#### Build
+#### To Build
 ```shell
 make example; ./main
 sudo make install # + #include <x86disass/disass.h>
