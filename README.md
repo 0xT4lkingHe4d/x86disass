@@ -1,12 +1,12 @@
 
 ## x86disass
-An x86_64 and x86(partially) disassembler written C
+An x86_64 and x86(partially) disassembler written C with C++ API
 ###### Ring0 instructions are not supported as of now
 
 #### To Build
 ```shell
-make example; ./main
 sudo make install
+make example
 ```
 ### Example
 ```c++
@@ -49,33 +49,7 @@ int main() {
 }
 
 ```
-### Output
-```
-0x000000:   41 89 ca                      MOV     R10D, ECX
-0x000003:   41 f7 c1 ff 0f 00 00          TEST    R9D, 0xfff
-0x00000a:   75 14                         JNE     [RIP+0x14]
-0x00000c:   b8 09 00 00 00                MOV     EAX, 0x9
-0x000011:   0f 05                         SYSCALL RCX, R11L, SS
-0x000013:   48 3d 00 f0 ff ff             CMP     , 0xfffff000
-0x000019:   77 25                         JA      [RIP+0x25]
-0x00001b:   c3                            RETN    
-0x00001c:   0f 1f 40 00                   NOP     DWORD ptr [RAX+0x0]
-...
-0x0000d0:   48 3d 00 f0 ff ff             CMP     , 0xfffff000
-0x0000d6:   77 58                         JA      [RIP+0x58]
-0x0000d8:   c3                            RETN    
-
-======================================================================
-
- + Source instr
-48 8d 05 9d 3b 00 00          LEA     RAX, QWORD ptr [RIP+0x3b9d]
-LEA @ 0x1000 points to 0x4ba4
-
- + Modified
-48 8d 05 37 13 00 00          LEA     RAX, QWORD ptr [RIP+0x1337]
-```
-
-#### Resources used
+#### Helpful links (If you decide to make your own)
 
 [X86-64 Instruction Encoding](https://wiki.osdev.org/X86-64_Instruction_Encoding).
 [X86 Opcode and Instruction Reference Home](http://ref.x86asm.net/geek64.html).
