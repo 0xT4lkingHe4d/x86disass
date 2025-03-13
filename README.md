@@ -1,13 +1,15 @@
 
 ## x86disass
 An x86_64 and x86(partially) disassembler written C with C++ API
-###### Ring0 instructions are not supported as of now
+Supports rewriting instructions (Registers, IMM, Disp...)
+###### Ring0 instructions are a bit funky as of now
 
 #### To Build
 ```shell
 sudo make install
 make example
 ```
+
 ### Example
 ```c++
 #include <stdio.h>
