@@ -1,6 +1,6 @@
 
 ## x86disass
-An x86_64 and x86(partially) disassembler written C with C++ API
+x86_64 (with partial x86 support) disassembler with C and C++ API<br>
 Supports rewriting instructions (Registers, IMM, Disp...)
 ###### Ring0 instructions are a bit funky as of now
 
@@ -32,7 +32,7 @@ int main() {
 }
 
 ```
-#### Helpful links (If you decide to make your own)
+###### Helpful links (If you decide to make your own)
 
 [X86-64 Instruction Encoding](https://wiki.osdev.org/X86-64_Instruction_Encoding).
 [X86 Opcode and Instruction Reference Home](http://ref.x86asm.net/geek64.html).
