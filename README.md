@@ -9,31 +9,43 @@ make example; ./main
 sudo make install
 ```
 ### Example
-```c
+```c++
 #include <stdio.h>
-#include <sys/mman.h>
-#include <x86disass/disass.h>
+#include <x86disass/disass.hpp>
 
-void main() {
-	do_disass((void*)mmap, 0xd9);
+#define p(s,...) printf(s, __VA_ARGS__);
 
-	instr_dat_t in;
-	__u8 *sc = "\x48\x8d\x05\x9d\x3b\x00\x00";
-	puts(" + Source instr");
+int main() {
+	auto d = Disass();
+	auto& in = d.disass("\x48\x8d\x05\x9d\x3b\x00\x00");
 
-	if (init_instr(X86_64, &in, sc) == -1) DIE("failed");
-	pr_in_str(&in);
+	in.Print();
+	// 48 8d 05 9d 3b 00 00          LEA     RAX, QWORD ptr [RIP+0x3b9d]
 
-	__u64 v = 0;
-	if (!get_rip_ptr_addr(&in, 0x1000, &v))
-		printf("%s @ 0x1000 points to 0x%lx\n\n", get_instr_name(&in), v);
+	d.flush();	// free insn_t vec inside ~Disass
 
-	puts(" + Modified");
-	change_ptr(&in, 0x1337, CHNG_REL);
-	pr_in_str(&in);
+	d.iter(main, 0x10, [](__u64 i, insn_t& in) {
+		p("%s\n", in.Mnemo());
 
-	__u8 ret[0x10] = {0};
-	assemble(&in, ret);
+		for (int i = 0; i < in.OperCount(); i++) {
+			auto op = in[i];
+			p("Operand [%i] - ", i);
+
+			switch (in[i]->Type()) {
+				case OperType::REG: p("%s\n", op->Reg().name());		break;
+				case OperType::IMM: p("Immediate %lx\n", op->Value());	break;
+				case OperType::FXD: p("Fixed %lx\n", op->Value());		break;
+				case OperType::PTR:
+					if (!!in.Sib()) {
+						p("[%i * %s + %s + %lx]\n", op->Scale(), op->IndexReg(), op->BaseReg(), op->Value());
+					} else if (op->IsRIP()) {
+						p("[%s + %lx ]\n", in[i]->IsRIP() == 32 ? "EIP" : "RIP", in[i]->Value());
+					}
+			}
+		}
+		puts("\n");
+	});
+	return 0;
 }
 
 ```
