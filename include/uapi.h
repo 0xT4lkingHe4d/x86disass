@@ -1,19 +1,21 @@
 #include "./disass.h"
 
+#ifndef DISASS_UAPI_H
+#define DISASS_UAPI_H
+
+
 typedef unsigned char 		BYTE;
 typedef unsigned short 		WORD;
 typedef unsigned int 		DWORD;
 typedef unsigned long long 	QWORD;
+// #define RIP		(WORD) 0x0100
+// #define PTR		(WORD) 0x1000
 
-
-#define RIP		(WORD) 0x0100
-#define PTR		(WORD) 0x1000
-
-#define IMM		(WORD) 0x0010
-#define REG		(WORD) 0x0008
-#define SIB		(WORD) 0x0004
-#define MODRM	(WORD) 0x0002
-#define DISP 	(WORD) 0x0001
+// #define IMM		(WORD) 0x0010
+// #define REG		(WORD) 0x0008
+// #define SIB		(WORD) 0x0004
+// #define MODRM	(WORD) 0x0002
+// #define DISP 	(WORD) 0x0001
 
 #define MAX_INSTR_SZ	15
 
@@ -29,7 +31,6 @@ __u32 get_inst_type(instr_dat_t *ret, operand *op);
 #define foreach_instr_off(t, in, i, ptr, len)						\
 		for (instr_dat_t in = {0}; i < len ; i += in.in_sz)			\
 			if (init_instr((t), (&in), (ptr + i)) != -1 || (i++ && 0))
-
 
 typedef struct {
 	__u64 v;
@@ -68,3 +69,4 @@ __s8 get_rip_ptr_addr(instr_dat_t *in, void *off, __u64 *v);
 
 ok_t get_imm(instr_dat_t *in);
 __u8 _build_instr(instr *in, __u8 sc[15]);
+#endif

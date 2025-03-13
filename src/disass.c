@@ -653,7 +653,7 @@ static int init_op_flags(__u8 *cpy, const __u8 *b, instr_dat_t *ret) {
 	return (r==-1) ? -1 : 0;
 }
 
-int init_instr(__u8 t, instr_dat_t *ret, __u8 *base) {
+int init_instr(__u8 t, instr_dat_t *ret, void *base) {
 	*ret = (instr_dat_t){.type = t, 0};
 	__u8 *cpy = base;
 	__s8 off = init_instr_pfx(cpy, ret);

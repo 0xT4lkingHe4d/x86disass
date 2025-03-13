@@ -242,7 +242,7 @@ __u64 _pow(__u8 a, __u8 b);
 
 void do_disass(__u8 *, __u32);
 int decode_prefix(__u8 *, instr_dat_t *);
-int init_instr(__u8, instr_dat_t *, __u8 *);
+int init_instr(__u8, instr_dat_t *, void *);
 static instr *find_instr(__u8 *, instr_dat_t *, __u8, const instr *min);
 __s8 list_contains(__u8 *, size_t, __u8);
 void pr_disass_instr(__u8 sc[15]);

@@ -96,8 +96,7 @@ __s8 change_disp(instr_dat_t *ret, operand *p, __u32 v) {
 #define CHANGE_SIB_B(x, v)	CHANGE_MODRM_RM(x, v);
 
 void change_regop(instr_dat_t *ret, operand *p, __u8 reg) {
-	if (p->x_origin.t!=X_REG_OP) DIE("not regop");
-	const instr *in = ret->insn;
+	if (p->x_origin.t != X_REG_OP) DIE("not regop");
 	ret->reg_op = reg&7;
 }
 

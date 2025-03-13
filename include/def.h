@@ -109,18 +109,14 @@ typedef enum {
 #define GRP(a, b, c)	\
 		(((GRP_F_##a&0x3f) << 12) | ((GRP_F_##b&0x3f) << 6) | ((GRP_F_##c&0x3f)))
 
-#define INSTR_IS_GRP(in, g)									\
-		(		(((in)->grp >> 12)	& 0x3f) == GRP_F_##g	\
-			||	(((in)->grp >> 6)	& 0x3f) == GRP_F_##g	\
-			||	(((in)->grp&0x3f) == GRP_F_##g))
+#define INSTR_IS_GRP(in, g)			\
+		((((in)->grp >> 12)&0x3f) == GRP_F_##g || (((in)->grp >> 6)&0x3f) == GRP_F_##g || (((in)->grp&0x3f) == GRP_F_##g))
 
-#define INSTR_GRP(grp, g)									\
-		(		(((grp) >> 12)	& 0x3f) == GRP_F_##g	\
-			||	(((grp) >> 6)	& 0x3f) == GRP_F_##g	\
-			||	(((grp)&0x3f) == GRP_F_##g))
+#define INSTR_GRP(grp, g)			\
+		((((grp) >> 12)&0x3f) == GRP_F_##g || (((grp) >> 6)&0x3f) == GRP_F_##g || (((grp)&0x3f) == GRP_F_##g))
 
-#define INSTR_HAS_GRP(in, g)		\
-		(( (in)->grp&0x3f) == g || ((((in)->grp >> 12)&0x3f) == g) || (((in)->grp >> 6)&0x3f) == g)
+#define INSN_GROUP(in, g)			\
+		INSTR_GRP(!(in)->op_ndx ? (in)->insn->grp : (in)->insn->ops[(in)->op_ndx].grp, g)
 
 /** @MOOP - Mode of Operation **/
 #define MODOP_R 0x1     /* applies for real, protected and 64-bit mode. SMM is not taken into account. */
