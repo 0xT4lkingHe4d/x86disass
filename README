@@ -1,4 +1,3 @@
-Ukradni si to, ty deges
 ## x86disass
 A X86 disassembler written in C. Support rewriting instruction.
 ###### Ring0 instructions are not supported
