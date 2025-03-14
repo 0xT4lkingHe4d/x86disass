@@ -30,7 +30,7 @@ char *word_sz_to_str(__u8 sz) {
 		case _XMMWORD_: return "XMM";
 		case _TBYTE_: 	return "TBYTE";
 		case _FWORD_: 	return "FWORD";
-		default: 		return "N/A";
+		default: 	return "N/A";
 	}
 }
 
@@ -57,7 +57,8 @@ static __u64 get_imm_le(__u8 addr[8], __u8 sz) {
 	__u64 v = *(__u64*)addr & N_BITS_MAX(sz);
 
 	switch (sz) {
-		case 8:		v = v;			break;
+		case 0:		v = 0;		break;
+		case 8:		v = v;		break;
 		case 16:	v = le16toh(v);	break;
 		case 32:	v = le32toh(v);	break;
 		case 64:	v = le64toh(v);	break;
