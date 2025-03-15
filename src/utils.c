@@ -55,17 +55,6 @@ __u64 _pow(__u8 a, __u8 b) {
 // "+0xcafe"
 static __u64 get_imm_le(__u8 addr[8], __u8 sz) {
 	__u64 v = *(__u64*)addr & N_BITS_MAX(sz);
-
-	switch (sz) {
-		case 0:		v = 0;		break;
-		case 8:		v = v;		break;
-		case 16:	v = le16toh(v);	break;
-		case 32:	v = le32toh(v);	break;
-		case 64:	v = le64toh(v);	break;
-		default:
-			DIE("FUCK");
-	}
-
 	return N_BITS_MAX(sz) & _signed(v, sz);
 }
 
