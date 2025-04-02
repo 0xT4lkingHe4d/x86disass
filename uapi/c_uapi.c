@@ -24,14 +24,14 @@ __extern(reg_4bits_name);
 __extern(get_addr_size);
 
 __u64 c_ptr_val(instr_dat_t *in, __u64 off) {
-	__u64 v = 0;
-	return !(get_rip_ptr_addr(in, (void*)off, &v)) ? v : -1;
+    __u64 v = 0;
+    return !(get_rip_ptr_addr(in, (void*)off, &v)) ? v : -1;
 }
 
 __u64 c_operptr(instr_dat_t *in, operand *op) {
-	__u64 v=0;
-	__u8 plmin = get_operand_ptr(in, op, &v);
-	
-	if (plmin == -1) return -1;
-	return ((plmin == u'-') ? (__s64)( -( ~v+1 ) ) : v);
+    __u64 v=0;
+    __u8 plmin = get_operand_ptr(in, op, &v);
+    
+    if (plmin == -1) return -1;
+    return ((plmin == u'-') ? (__s64)( -( ~v+1 ) ) : v);
 }
