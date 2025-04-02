@@ -12,6 +12,16 @@ __extern(get_oper_sz);
 __extern(get_instr_name);
 __extern(get_rip_oper);
 __extern(pr_in_str);
+__extern(_build_instr);
+__extern(change_ptr);
+__extern(stick_in_instr);
+__extern(assemble);
+__extern(seg_reg_str);
+__extern(get_rip_str);
+__extern(get_signed_char);
+__extern(word_sz_to_str);
+__extern(reg_4bits_name);
+__extern(get_addr_size);
 
 __u64 c_ptr_val(instr_dat_t *in, __u64 off) {
 	__u64 v = 0;

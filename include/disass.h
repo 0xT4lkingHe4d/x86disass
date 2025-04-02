@@ -251,6 +251,10 @@ void pr_disass_instr(__u8 sc[15]);
 
 #define PR_INSTR(e) (print_instr(e))
 void print_instr(instr *);
+char *word_sz_to_str(__u8 sz);
+char *seg_reg_str(__u8 v);
+__u8 *get_rip_str(__u8 sz);
+__u8 get_signed_char(__u64 v, __u64 sz);
 const __u8 *get_instr_name(instr_dat_t *in);
 char *word_sz_to_str(__u8);
 

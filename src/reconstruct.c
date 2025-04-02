@@ -52,7 +52,7 @@ __u8 assemble(instr_dat_t *in, __u8 ops[15]) {
 	return i;
 }
 
-__u8 _build_instr(instr *in, __u8 sc[15]) {
+__u8 _build_instr(instr *in, __u8 *sc) {
 	__u64 i = 0;
 	if (in->prefix)		sc[i++] = in->prefix;
 	if (in->two_byte)	sc[i++] = 0x0f;

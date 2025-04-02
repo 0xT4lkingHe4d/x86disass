@@ -1,9 +1,5 @@
 #include "./disass.h"
 
-#ifndef DISASS_UAPI_H
-#define DISASS_UAPI_H
-
-
 typedef unsigned char 		BYTE;
 typedef unsigned short 		WORD;
 typedef unsigned int 		DWORD;
@@ -32,18 +28,26 @@ __u32 get_inst_type(instr_dat_t *ret, operand *op);
 		for (instr_dat_t in = {0}; i < len ; i += in.in_sz)			\
 			if (init_instr((t), (&in), (ptr + i)) != -1 || (i++ && 0))
 
+#ifndef DISASS_UAPI_H
+#define DISASS_UAPI_H
+
 typedef struct {
 	__u64 v;
 	__s8 ok;
 } ok_t;
-#define _OK(t, val) (ok_t) {.ok=t, .v=(val)}
-
 
 typedef struct {
 	__s8	ok;
 	__u64	v;
 } err_t;
+#endif
+
+#define _OK(t, val) (ok_t) {.ok=t, .v=(val)}
 #define NEW_ERROR(_ok, _v) ((err_t){.ok = _ok, .v = _v })
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 __u8 assemble(instr_dat_t *inst, __u8 ops[15]);
 
@@ -66,7 +70,11 @@ err_t get_dst_ptr(instr_dat_t *in);
 
 __u8 get_rip_val(instr_dat_t *in, __u64 *v);
 __s8 get_rip_ptr_addr(instr_dat_t *in, void *off, __u64 *v);
+__u8 stick_in_instr(instr_dat_t *in, __u8 *ptr, __u64 imm, __u64 virt, __u8 t);
 
 ok_t get_imm(instr_dat_t *in);
-__u8 _build_instr(instr *in, __u8 sc[15]);
+__u8 _build_instr(instr *in, __u8 *sc);
+
+#ifdef __cplusplus
+}
 #endif

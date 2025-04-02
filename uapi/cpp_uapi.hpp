@@ -8,6 +8,8 @@
 // #include "../include/disass.h"
 #include "../include/uapi.h"
 
+#ifndef DISASS_CPP_H
+#define DISASS_CPP_H
 #define __recv_extern(fn) extern "C" decltype(fn) (*c_##fn);
 __recv_extern(reg_by_name);
 __recv_extern(get_reg_name);
@@ -17,11 +19,26 @@ __recv_extern(get_oper_sz);
 __recv_extern(get_instr_name);
 __recv_extern(get_rip_oper);
 __recv_extern(pr_in_str);
+__recv_extern(_build_instr);
+__recv_extern(change_ptr);
+__recv_extern(stick_in_instr);
+__recv_extern(assemble);
+__recv_extern(seg_reg_str);
+__recv_extern(get_rip_str);
+__recv_extern(get_signed_char);
+__recv_extern(word_sz_to_str);
+__recv_extern(get_reg_name);
+__recv_extern(reg_4bits_name);
+__recv_extern(get_addr_size);
+#endif
 
 extern "C" {
 	__u64 c_ptr_val(instr_dat_t *, __u64);
 	__u64 c_operptr(instr_dat_t *in, operand *op);
 }
+
+enum class ReAsmT : __u8
+{ REL=CHNG_REL, FXD=CHNG_FXD };
 
 class Regs {
 	const reg_st *reg{};
@@ -53,12 +70,14 @@ enum class OperType : char
 #define MAX_OPS_COUNT 4
 
 class Operand : public operand {
+	char *name;
 	instr_dat_t *instr{};
 	struct {
 		Regs 	v;				// value
 		Regs	index, base;	// [RAX + RDX + EAX]
 	} regs;
 public:
+	char * Str();
 	Operand() = default;
 	__s64 Value() {
 		if (!!is_ptr) 	return c_operptr(instr, this);
@@ -87,7 +106,7 @@ public:
 		return (OperType)r;
 	}
 
-	__u64 size() { return get_oper_sz(instr, this); }
+	__u64 size() { return ((!!sz) ? sz : disp_sz); }//c_get_oper_sz(instr, this); }
 
 	bool IsType(OperType p) {
 		char a{(char)Type()}, b{(char)p};
@@ -124,11 +143,15 @@ public:
 	bool IsJump();
 	bool IsShortJump();
 	bool IsBranch();
+	bool IsShortBranch();
 	bool IsDatamov();
 	bool IsNull();
 	const char *Mnemo();
 	void Print();
 	void *Addr();
+	__u8 dump(__u8 *ptr);
+	void stick_ptr(__u64 diff, ReAsmT f);
+	__u8 stick_in(void *ptr, __u64 imm, __u64 virt, ReAsmT t);
 
 	/* C++ impl */
 	__u64 PtrAddr(__u64 off=0) { return PtrAddr(0, off); }
@@ -137,13 +160,15 @@ public:
 	}
 
 	insn_t() = default;
+	template<typename T>
+	insn_t(T *p) { init((void*)p); }
 	insn_t(void *p, instr_dat_t& in) : addr{ p } {
 		std::memcpy(this, &in, sizeof(instr_dat_t));
 	}
 
 	template<typename T>
 	insn_t& init(T *p) {
-		c_init_instr(X86_64, this, set_addr(p));
+		c_init_instr(X86_64, this, (void*)set_addr(p));
 		for (int i{}; i < MAX_OPS_COUNT; linkOper(op[i++], this))
 			*(dynamic_cast<operand*>(&op[i])) = std::move(oper[i]);
 
@@ -152,7 +177,7 @@ public:
 	Operand *operator[](__u8 i);
 
 	template<typename T>
-	T *set_addr(T *p) { return (addr = p); }
+	T *set_addr(T *p) { return (T*)(addr = (void *)(p)); }
 };
 
 typedef void(*insn_iter_t)(__u64, insn_t&);
@@ -192,3 +217,4 @@ public:
 private:
 	std::vector<insn_t> vec;
 };
+// #endif

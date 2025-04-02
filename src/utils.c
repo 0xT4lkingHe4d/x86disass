@@ -1,5 +1,5 @@
 #include <endian.h>
-#include "../include/disass.h"
+#include "../include/uapi.h"
 
 void print_instr(instr *e) {
 	if (!e) {
@@ -30,7 +30,7 @@ char *word_sz_to_str(__u8 sz) {
 		case _XMMWORD_: return "XMM";
 		case _TBYTE_: 	return "TBYTE";
 		case _FWORD_: 	return "FWORD";
-		default: 	return "N/A";
+		default: 		return "N/A";
 	}
 }
 
@@ -55,6 +55,7 @@ __u64 _pow(__u8 a, __u8 b) {
 // "+0xcafe"
 static __u64 get_imm_le(__u8 addr[8], __u8 sz) {
 	__u64 v = *(__u64*)addr & N_BITS_MAX(sz);
+	
 	return N_BITS_MAX(sz) & _signed(v, sz);
 }
 
@@ -118,10 +119,10 @@ void pr_in_str(instr_dat_t *in) {
 			if (p->sib.on) {
 				prf("[%s + %s*%i ",
 					reg_4bits_name(p->sib.b_reg, addr_sz),
-					(!p->sib.i_reg) ? "[NO]" : reg_4bits_name(p->sib.i_reg, addr_sz),
+					(!p->sib.i_reg) ? "[NO]" : (char*)reg_4bits_name(p->sib.i_reg, addr_sz),
 					p->sib.s);
 
-				if (p->disp_sz) prf("%c0x%llx", get_signed_char((__u64*)p->disp, p->disp_sz), v);
+				if (p->disp_sz) prf("%c0x%llx", get_signed_char(*(__u64*)p->disp, p->disp_sz), v);
 				prf("]");
 			} else if (in->modrm_on && !!p->disp_sz) {
 				prf("[");

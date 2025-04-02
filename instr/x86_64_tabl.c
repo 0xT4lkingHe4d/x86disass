@@ -266,12 +266,12 @@ __attribute__((section(".x86_64_tabl"), aligned(0x1000))) const instr x86_64_tab
 	{ .opcode1=0xD8, .reg_op=6, .ops=(x86_in_ops[]){ { .mnemonic="FDIV", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_SR}, {0}, {0} },  .grp=GRP(X87FPU, ARITH, NONE), }, { .mnemonic="FDIV", .op={ {.reg="ST"}, {0}, {0}, {0} },  .grp=GRP(X87FPU, ARITH, NONE), },  }, .ops_count=2,  },            /* desc=Divide */
 	{ .opcode1=0xD8, .reg_op=7, .ops=(x86_in_ops[]){ { .mnemonic="FDIVR", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_SR}, {0}, {0} },  .grp=GRP(X87FPU, ARITH, NONE), }, { .mnemonic="FDIVR", .op={ {.reg="ST"}, {0}, {0}, {0} },  .grp=GRP(X87FPU, ARITH, NONE), },  }, .ops_count=2,  },            /* desc=Reverse Divide */
 	{ .opcode1=0xD9, .reg_op='0', .mnemonic="FLD", .op={ {.reg="ST"}, {.f=F_ADDR_ES | F_OPER_SR}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Load Floating Point Value */
-	{ .opcode1=0xD9, .reg_op=1, .mnemonic="FXCH", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Exchange Register Contents */
+	{ .opcode1=0xD9, .reg_op=1, .mnemonic="FXCH", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Exchange Register Contents */
 	{ .opcode1=0xD9, .opcode2=0xC9, .reg_op=1, .mnemonic="FXCH", .op={ {.reg="ST"}, {.reg="ST1"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Exchange Register Contents */
 	{ .opcode1=0xD9, .reg_op=2, .mnemonic="FST", .op={ {.f=F_ADDR_M | F_OPER_SR}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Floating Point Value */
 	{ .opcode1=0xD9, .opcode2=0xD0, .reg_op=2, .mnemonic="FNOP", .op={ {0}, {0}, {0}, {0}}, .grp=GRP(X87FPU, CONTROL, NONE),  },            /* desc=No Operation */
 	{ .opcode1=0xD9, .reg_op=3, .mnemonic="FSTP", .op={ {.f=F_ADDR_M | F_OPER_SR}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Floating Point Value and Pop */
-	{ .opcode1=0xD9, .reg_op=3, .mnemonic="FSTP1", .op={ {.v="X86_FPU_ANY"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Floating Point Value and Pop */
+	{ .opcode1=0xD9, .reg_op=3, .mnemonic="FSTP1", .op={ {.v=X86_FPU_ANY}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Floating Point Value and Pop */
 	{ .opcode1=0xD9, .reg_op=4, .mnemonic="FLDENV", .op={ {.f=F_ADDR_M | F_OPER_E}, {0}, {0}, {0}}, .grp=GRP(X87FPU, CONTROL, NONE),  },            /* desc=Load x87 FPU Environment */
 	{ .opcode1=0xD9, .opcode2=0xE0, .reg_op=4, .mnemonic="FCHS", .op={ {.reg="ST"}, {0}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Change Sign */
 	{ .opcode1=0xD9, .opcode2=0xE1, .reg_op=4, .mnemonic="FABS", .op={ {.reg="ST"}, {0}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Absolute Value */
@@ -306,26 +306,26 @@ __attribute__((section(".x86_64_tabl"), aligned(0x1000))) const instr x86_64_tab
 	{ .opcode1=0xD9, .opcode2=0xFE, .reg_op=7, .mnemonic="FSIN", .op={ {.reg="ST"}, {0}, {0}, {0}}, .grp=GRP(X87FPU, TRANS, NONE),  },            /* desc=Sine */
 	{ .opcode1=0xD9, .opcode2=0xFF, .reg_op=7, .mnemonic="FCOS", .op={ {.reg="ST"}, {0}, {0}, {0}}, .grp=GRP(X87FPU, TRANS, NONE),  },            /* desc=Cosine */
 	{ .opcode1=0xDA, .reg_op='0', .mnemonic="FIADD", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DI}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Add */
-	{ .opcode1=0xDA, .reg_op='0', .mnemonic="FCMOVB", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=FP Conditional Move - below (CF=1) */
+	{ .opcode1=0xDA, .reg_op='0', .mnemonic="FCMOVB", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=FP Conditional Move - below (CF=1) */
 	{ .opcode1=0xDA, .reg_op=1, .mnemonic="FIMUL", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DI}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Multiply */
-	{ .opcode1=0xDA, .reg_op=1, .mnemonic="FCMOVE", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=FP Conditional Move - equal (ZF=1) */
+	{ .opcode1=0xDA, .reg_op=1, .mnemonic="FCMOVE", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=FP Conditional Move - equal (ZF=1) */
 	{ .opcode1=0xDA, .reg_op=2, .mnemonic="FICOM", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DI}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Integer */
-	{ .opcode1=0xDA, .reg_op=2, .mnemonic="FCMOVBE", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=FP Conditional Move - below or equal (CF=1 or ZF=1) */
+	{ .opcode1=0xDA, .reg_op=2, .mnemonic="FCMOVBE", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=FP Conditional Move - below or equal (CF=1 or ZF=1) */
 	{ .opcode1=0xDA, .reg_op=3, .mnemonic="FICOMP", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DI}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Integer and Pop */
-	{ .opcode1=0xDA, .reg_op=3, .mnemonic="FCMOVU", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=FP Conditional Move - unordered (PF=1) */
+	{ .opcode1=0xDA, .reg_op=3, .mnemonic="FCMOVU", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=FP Conditional Move - unordered (PF=1) */
 	{ .opcode1=0xDA, .reg_op=4, .mnemonic="FISUB", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DI}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Subtract */
 	{ .opcode1=0xDA, .reg_op=5, .mnemonic="FISUBR", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DI}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Reverse Subtract */
 	{ .opcode1=0xDA, .opcode2=0xE9, .reg_op=5, .mnemonic="FUCOMPP", .op={ {.reg="ST"}, {.reg="ST1"}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Unordered Compare Floating Point Values and Pop Twice */
 	{ .opcode1=0xDA, .reg_op=6, .mnemonic="FIDIV", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DI}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Divide */
 	{ .opcode1=0xDA, .reg_op=7, .mnemonic="FIDIVR", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DI}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Reverse Divide */
 	{ .opcode1=0xDB, .reg_op='0', .mnemonic="FILD", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DI}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Load Integer */
-	{ .opcode1=0xDB, .reg_op='0', .mnemonic="FCMOVNB", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=FP Conditional Move - not below (CF=0) */
+	{ .opcode1=0xDB, .reg_op='0', .mnemonic="FCMOVNB", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=FP Conditional Move - not below (CF=0) */
 	{ .opcode1=0xDB, .reg_op=1, .mnemonic="FISTTP", .op={ {.f=F_ADDR_M | F_OPER_DI}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, CONVER, NONE),  },            /* desc=Store Integer with Truncation and Pop */
-	{ .opcode1=0xDB, .reg_op=1, .mnemonic="FCMOVNE", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=FP Conditional Move - not equal (ZF=0) */
+	{ .opcode1=0xDB, .reg_op=1, .mnemonic="FCMOVNE", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=FP Conditional Move - not equal (ZF=0) */
 	{ .opcode1=0xDB, .reg_op=2, .mnemonic="FIST", .op={ {.f=F_ADDR_M | F_OPER_DI}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Integer */
-	{ .opcode1=0xDB, .reg_op=2, .mnemonic="FCMOVNBE", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=FP Conditional Move - below or equal (CF=0 and ZF=0) */
+	{ .opcode1=0xDB, .reg_op=2, .mnemonic="FCMOVNBE", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=FP Conditional Move - below or equal (CF=0 and ZF=0) */
 	{ .opcode1=0xDB, .reg_op=3, .mnemonic="FISTP", .op={ {.f=F_ADDR_M | F_OPER_DI}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Integer and Pop */
-	{ .opcode1=0xDB, .reg_op=3, .mnemonic="FCMOVNU", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=FP Conditional Move - not unordered (PF=0) */
+	{ .opcode1=0xDB, .reg_op=3, .mnemonic="FCMOVNU", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=FP Conditional Move - not unordered (PF=0) */
 	{ .opcode1=0xDB, .opcode2=0xE0, .reg_op=4, .mnemonic="FNENI NOP", .op={ {0}, {0}, {0}, {0}}, .grp=GRP(OBSOL, CONTROL, NONE),  },            /* desc=Treated as Integer NOP */
 	{ .opcode1=0xDB, .opcode2=0xE1, .reg_op=4, .mnemonic="FNDISI NOP", .op={ {0}, {0}, {0}, {0}}, .grp=GRP(OBSOL, CONTROL, NONE),  },            /* desc=Treated as Integer NOP */
 	{ .opcode1=0xDB, .opcode2=0xE2, .reg_op=4, .mnemonic="FNCLEX", .op={ {0}, {0}, {0}, {0}}, .grp=GRP(X87FPU, CONTROL, NONE),  },            /* desc=Clear Exceptions */
@@ -334,79 +334,79 @@ __attribute__((section(".x86_64_tabl"), aligned(0x1000))) const instr x86_64_tab
 	{ .prefix=0x9B, .opcode1=0xDB, .opcode2=0xE3, .reg_op=4, .mnemonic="FINIT", .op={ {0}, {0}, {0}, {0}}, .grp=GRP(X87FPU, CONTROL, NONE),  },            /* desc=Initialize Floating-Point Unit */
 	{ .opcode1=0xDB, .opcode2=0xE4, .reg_op=4, .mnemonic="FNSETPM NOP", .op={ {0}, {0}, {0}, {0}}, .grp=GRP(OBSOL, CONTROL, NONE),  },            /* desc=Treated as Integer NOP */
 	{ .opcode1=0xDB, .reg_op=5, .mnemonic="FLD", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_ER}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Load Floating Point Value */
-	{ .opcode1=0xDB, .reg_op=5, .mnemonic="FUCOMI", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Unordered Compare Floating Point Values and Set EFLAGS */
-	{ .opcode1=0xDB, .reg_op=6, .mnemonic="FCOMI", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Floating Point Values and Set EFLAGS */
+	{ .opcode1=0xDB, .reg_op=5, .mnemonic="FUCOMI", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Unordered Compare Floating Point Values and Set EFLAGS */
+	{ .opcode1=0xDB, .reg_op=6, .mnemonic="FCOMI", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Floating Point Values and Set EFLAGS */
 	{ .opcode1=0xDB, .reg_op=7, .mnemonic="FSTP", .op={ {.f=F_ADDR_M | F_OPER_ER}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Floating Point Value and Pop */
 	{ .opcode1=0xDC, .reg_op='0', .mnemonic="FADD", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DR}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Add */
-	{ .opcode1=0xDC, .reg_op='0', .mnemonic="FADD", .op={ {.v="X86_FPU_ANY"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Add */
+	{ .opcode1=0xDC, .reg_op='0', .mnemonic="FADD", .op={ {.v=X86_FPU_ANY}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Add */
 	{ .opcode1=0xDC, .reg_op=1, .mnemonic="FMUL", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DR}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Multiply */
-	{ .opcode1=0xDC, .reg_op=1, .mnemonic="FMUL", .op={ {.v="X86_FPU_ANY"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Multiply */
+	{ .opcode1=0xDC, .reg_op=1, .mnemonic="FMUL", .op={ {.v=X86_FPU_ANY}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Multiply */
 	{ .opcode1=0xDC, .reg_op=2, .mnemonic="FCOM", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DR}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Real */
-	{ .opcode1=0xDC, .reg_op=2, .mnemonic="FCOM2", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Real */
+	{ .opcode1=0xDC, .reg_op=2, .mnemonic="FCOM2", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Real */
 	{ .opcode1=0xDC, .reg_op=3, .mnemonic="FCOMP", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DR}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Real and Pop */
-	{ .opcode1=0xDC, .reg_op=3, .mnemonic="FCOMP3", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Real and Pop */
+	{ .opcode1=0xDC, .reg_op=3, .mnemonic="FCOMP3", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Real and Pop */
 	{ .opcode1=0xDC, .reg_op=4, .mnemonic="FSUB", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DR}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Subtract */
-	{ .opcode1=0xDC, .reg_op=4, .mnemonic="FSUBR", .op={ {.v="X86_FPU_ANY"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Reverse Subtract */
+	{ .opcode1=0xDC, .reg_op=4, .mnemonic="FSUBR", .op={ {.v=X86_FPU_ANY}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Reverse Subtract */
 	{ .opcode1=0xDC, .reg_op=5, .mnemonic="FSUBR", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DR}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Reverse Subtract */
-	{ .opcode1=0xDC, .reg_op=5, .mnemonic="FSUB", .op={ {.v="X86_FPU_ANY"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Subtract */
+	{ .opcode1=0xDC, .reg_op=5, .mnemonic="FSUB", .op={ {.v=X86_FPU_ANY}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Subtract */
 	{ .opcode1=0xDC, .reg_op=6, .mnemonic="FDIV", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DR}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Divide */
-	{ .opcode1=0xDC, .reg_op=6, .mnemonic="FDIVR", .op={ {.v="X86_FPU_ANY"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Reverse Divide */
+	{ .opcode1=0xDC, .reg_op=6, .mnemonic="FDIVR", .op={ {.v=X86_FPU_ANY}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Reverse Divide */
 	{ .opcode1=0xDC, .reg_op=7, .mnemonic="FDIVR", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DR}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Reverse Divide */
-	{ .opcode1=0xDC, .reg_op=7, .mnemonic="FDIV", .op={ {.v="X86_FPU_ANY"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Divide and Pop */
+	{ .opcode1=0xDC, .reg_op=7, .mnemonic="FDIV", .op={ {.v=X86_FPU_ANY}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Divide and Pop */
 	{ .opcode1=0xDD, .reg_op='0', .mnemonic="FLD", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_DR}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Load Floating Point Value */
-	{ .opcode1=0xDD, .reg_op='0', .mnemonic="FFREE", .op={ {.v="X86_FPU_ANY"}, {0}, {0}, {0}}, .grp=GRP(X87FPU, CONTROL, NONE),  },            /* desc=Free Floating-Point Register */
+	{ .opcode1=0xDD, .reg_op='0', .mnemonic="FFREE", .op={ {.v=X86_FPU_ANY}, {0}, {0}, {0}}, .grp=GRP(X87FPU, CONTROL, NONE),  },            /* desc=Free Floating-Point Register */
 	{ .opcode1=0xDD, .reg_op=1, .mnemonic="FISTTP", .op={ {.f=F_ADDR_M | F_OPER_QI}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, CONVER, NONE),  },            /* desc=Store Integer with Truncation and Pop */
-	{ .opcode1=0xDD, .reg_op=1, .mnemonic="FXCH4", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Exchange Register Contents */
+	{ .opcode1=0xDD, .reg_op=1, .mnemonic="FXCH4", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Exchange Register Contents */
 	{ .opcode1=0xDD, .reg_op=2, .mnemonic="FST", .op={ {.f=F_ADDR_M | F_OPER_DR}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Floating Point Value */
-	{ .opcode1=0xDD, .reg_op=2, .mnemonic="FST", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Floating Point Value */
+	{ .opcode1=0xDD, .reg_op=2, .mnemonic="FST", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Floating Point Value */
 	{ .opcode1=0xDD, .reg_op=3, .mnemonic="FSTP", .op={ {.f=F_ADDR_M | F_OPER_DR}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Floating Point Value and Pop */
-	{ .opcode1=0xDD, .reg_op=3, .mnemonic="FSTP", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Floating Point Value and Pop */
+	{ .opcode1=0xDD, .reg_op=3, .mnemonic="FSTP", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Floating Point Value and Pop */
 	{ .opcode1=0xDD, .reg_op=4, .mnemonic="FRSTOR", .op={ {.reg="ST"}, {.reg="ST1"}, {.reg="ST2"}, {0}}, .grp=GRP(X87FPU, CONTROL, NONE),  },            /* desc=Restore x87 FPU State */
-	{ .opcode1=0xDD, .reg_op=4, .mnemonic="FUCOM", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Unordered Compare Floating Point Values */
+	{ .opcode1=0xDD, .reg_op=4, .mnemonic="FUCOM", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Unordered Compare Floating Point Values */
 	{ .opcode1=0xDD, .opcode2=0xE1, .reg_op=4, .mnemonic="FUCOM", .op={ {.reg="ST"}, {.reg="ST1"}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Unordered Compare Floating Point Values */
-	{ .opcode1=0xDD, .reg_op=5, .mnemonic="FUCOMP", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Unordered Compare Floating Point Values and Pop */
+	{ .opcode1=0xDD, .reg_op=5, .mnemonic="FUCOMP", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Unordered Compare Floating Point Values and Pop */
 	{ .opcode1=0xDD, .opcode2=0xE9, .reg_op=5, .mnemonic="FUCOMP", .op={ {.reg="ST"}, {.reg="ST1"}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Unordered Compare Floating Point Values and Pop */
 	{ .opcode1=0xDD, .reg_op=6, .mnemonic="FNSAVE", .op={ {.f=F_ADDR_M | F_OPER_ST}, {.reg="ST"}, {.reg="ST1"}, {0}}, .grp=GRP(X87FPU, CONTROL, NONE),  },            /* desc=Store x87 FPU State */
 	{ .prefix=0x9B, .opcode1=0xDD, .reg_op=6, .mnemonic="FSAVE", .op={ {.f=F_ADDR_M | F_OPER_ST}, {.reg="ST"}, {.reg="ST1"}, {0}}, .grp=GRP(X87FPU, CONTROL, NONE),  },            /* desc=Store x87 FPU State */
 	{ .opcode1=0xDD, .reg_op=7, .mnemonic="FNSTSW", .op={ {.f=F_ADDR_M | F_OPER_W}, {0}, {0}, {0}}, .grp=GRP(X87FPU, CONTROL, NONE),  },            /* desc=Store x87 FPU Status Word */
 	{ .prefix=0x9B, .opcode1=0xDD, .reg_op=7, .mnemonic="FSTSW", .op={ {.f=F_ADDR_M | F_OPER_W}, {0}, {0}, {0}}, .grp=GRP(X87FPU, CONTROL, NONE),  },            /* desc=Store x87 FPU Status Word */
 	{ .opcode1=0xDE, .reg_op='0', .mnemonic="FIADD", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_WI}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Add */
-	{ .opcode1=0xDE, .reg_op='0', .mnemonic="FADDP", .op={ {.v="X86_FPU_ANY"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Add and Pop */
+	{ .opcode1=0xDE, .reg_op='0', .mnemonic="FADDP", .op={ {.v=X86_FPU_ANY}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Add and Pop */
 	{ .opcode1=0xDE, .opcode2=0xC1, .reg_op='0', .mnemonic="FADDP", .op={ {.reg="ST1"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Add and Pop */
 	{ .opcode1=0xDE, .reg_op=1, .mnemonic="FIMUL", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_WI}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Multiply */
-	{ .opcode1=0xDE, .reg_op=1, .mnemonic="FMULP", .op={ {.v="X86_FPU_ANY"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Multiply and Pop */
+	{ .opcode1=0xDE, .reg_op=1, .mnemonic="FMULP", .op={ {.v=X86_FPU_ANY}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Multiply and Pop */
 	{ .opcode1=0xDE, .opcode2=0xC9, .reg_op=1, .mnemonic="FMULP", .op={ {.reg="ST1"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Multiply and Pop */
 	{ .opcode1=0xDE, .reg_op=2, .mnemonic="FICOM", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_WI}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Integer */
-	{ .opcode1=0xDE, .reg_op=2, .mnemonic="FCOMP5", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Real and Pop */
+	{ .opcode1=0xDE, .reg_op=2, .mnemonic="FCOMP5", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Real and Pop */
 	{ .opcode1=0xDE, .reg_op=3, .mnemonic="FICOMP", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_WI}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Integer and Pop */
 	{ .opcode1=0xDE, .opcode2=0xD9, .reg_op=3, .mnemonic="FCOMPP", .op={ {.reg="ST"}, {.reg="ST1"}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Real and Pop Twice */
 	{ .opcode1=0xDE, .reg_op=4, .mnemonic="FISUB", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_WI}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Subtract */
-	{ .opcode1=0xDE, .reg_op=4, .mnemonic="FSUBRP", .op={ {.v="X86_FPU_ANY"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Reverse Subtract and Pop */
+	{ .opcode1=0xDE, .reg_op=4, .mnemonic="FSUBRP", .op={ {.v=X86_FPU_ANY}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Reverse Subtract and Pop */
 	{ .opcode1=0xDE, .opcode2=0xE1, .reg_op=4, .mnemonic="FSUBRP", .op={ {.reg="ST1"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Reverse Subtract and Pop */
 	{ .opcode1=0xDE, .reg_op=5, .mnemonic="FISUBR", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_WI}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Reverse Subtract */
-	{ .opcode1=0xDE, .reg_op=5, .mnemonic="FSUBP", .op={ {.v="X86_FPU_ANY"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Subtract and Pop */
+	{ .opcode1=0xDE, .reg_op=5, .mnemonic="FSUBP", .op={ {.v=X86_FPU_ANY}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Subtract and Pop */
 	{ .opcode1=0xDE, .opcode2=0xE9, .reg_op=5, .mnemonic="FSUBP", .op={ {.reg="ST1"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Subtract and Pop */
 	{ .opcode1=0xDE, .reg_op=6, .mnemonic="FIDIV", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_WI}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Divide */
-	{ .opcode1=0xDE, .reg_op=6, .mnemonic="FDIVRP", .op={ {.v="X86_FPU_ANY"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Reverse Divide and Pop */
+	{ .opcode1=0xDE, .reg_op=6, .mnemonic="FDIVRP", .op={ {.v=X86_FPU_ANY}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Reverse Divide and Pop */
 	{ .opcode1=0xDE, .opcode2=0xF1, .reg_op=6, .mnemonic="FDIVRP", .op={ {.reg="ST1"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Reverse Divide and Pop */
 	{ .opcode1=0xDE, .reg_op=7, .mnemonic="FIDIVR", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_WI}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Reverse Divide */
-	{ .opcode1=0xDE, .reg_op=7, .mnemonic="FDIVP", .op={ {.v="X86_FPU_ANY"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Divide and Pop */
+	{ .opcode1=0xDE, .reg_op=7, .mnemonic="FDIVP", .op={ {.v=X86_FPU_ANY}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Divide and Pop */
 	{ .opcode1=0xDE, .opcode2=0xF9, .reg_op=7, .mnemonic="FDIVP", .op={ {.reg="ST1"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, ARITH, NONE),  },            /* desc=Divide and Pop */
 	{ .opcode1=0xDF, .reg_op='0', .mnemonic="FILD", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_WI}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Load Integer */
-	{ .opcode1=0xDF, .reg_op='0', .mnemonic="FFREEP", .op={ {.v="X86_FPU_ANY"}, {0}, {0}, {0}}, .grp=GRP(X87FPU, CONTROL, NONE),  },            /* desc=Free Floating-Point Register and Pop */
+	{ .opcode1=0xDF, .reg_op='0', .mnemonic="FFREEP", .op={ {.v=X86_FPU_ANY}, {0}, {0}, {0}}, .grp=GRP(X87FPU, CONTROL, NONE),  },            /* desc=Free Floating-Point Register and Pop */
 	{ .opcode1=0xDF, .reg_op=1, .mnemonic="FISTTP", .op={ {.f=F_ADDR_M | F_OPER_WI}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, CONVER, NONE),  },            /* desc=Store Integer with Truncation and Pop */
-	{ .opcode1=0xDF, .reg_op=1, .mnemonic="FXCH7", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Exchange Register Contents */
+	{ .opcode1=0xDF, .reg_op=1, .mnemonic="FXCH7", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Exchange Register Contents */
 	{ .opcode1=0xDF, .reg_op=2, .mnemonic="FIST", .op={ {.f=F_ADDR_M | F_OPER_WI}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Integer */
-	{ .opcode1=0xDF, .reg_op=2, .mnemonic="FSTP8", .op={ {.v="X86_FPU_ANY"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Floating Point Value and Pop */
+	{ .opcode1=0xDF, .reg_op=2, .mnemonic="FSTP8", .op={ {.v=X86_FPU_ANY}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Floating Point Value and Pop */
 	{ .opcode1=0xDF, .reg_op=3, .mnemonic="FISTP", .op={ {.f=F_ADDR_M | F_OPER_WI}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Integer and Pop */
-	{ .opcode1=0xDF, .reg_op=3, .mnemonic="FSTP9", .op={ {.v="X86_FPU_ANY"}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Floating Point Value and Pop */
+	{ .opcode1=0xDF, .reg_op=3, .mnemonic="FSTP9", .op={ {.v=X86_FPU_ANY}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Floating Point Value and Pop */
 	{ .opcode1=0xDF, .reg_op=4, .mnemonic="FBLD", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_BCD}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Load Binary Coded Decimal */
 	{ .opcode1=0xDF, .opcode2=0xE0, .reg_op=4, .mnemonic="FNSTSW", .op={ {.reg="AX"}, {0}, {0}, {0}}, .grp=GRP(X87FPU, CONTROL, NONE),  },            /* desc=Store x87 FPU Status Word */
 	{ .prefix=0x9B, .opcode1=0xDF, .opcode2=0xE0, .reg_op=4, .mnemonic="FSTSW", .op={ {.reg="AX"}, {0}, {0}, {0}}, .grp=GRP(X87FPU, CONTROL, NONE),  },            /* desc=Store x87 FPU Status Word */
 	{ .opcode1=0xDF, .reg_op=5, .mnemonic="FILD", .op={ {.reg="ST"}, {.f=F_ADDR_M | F_OPER_QI}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Load Integer */
-	{ .opcode1=0xDF, .reg_op=5, .mnemonic="FUCOMIP", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Unordered Compare Floating Point Values and Set EFLAGS and Pop */
+	{ .opcode1=0xDF, .reg_op=5, .mnemonic="FUCOMIP", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Unordered Compare Floating Point Values and Set EFLAGS and Pop */
 	{ .opcode1=0xDF, .reg_op=6, .mnemonic="FBSTP", .op={ {.f=F_ADDR_M | F_OPER_BCD}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store BCD Integer and Pop */
-	{ .opcode1=0xDF, .reg_op=6, .mnemonic="FCOMIP", .op={ {.reg="ST"}, {.v="X86_FPU_ANY"}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Floating Point Values and Set EFLAGS and Pop */
+	{ .opcode1=0xDF, .reg_op=6, .mnemonic="FCOMIP", .op={ {.reg="ST"}, {.v=X86_FPU_ANY}, {0}, {0}}, .grp=GRP(X87FPU, COMPAR, NONE),  },            /* desc=Compare Floating Point Values and Set EFLAGS and Pop */
 	{ .opcode1=0xDF, .reg_op=7, .mnemonic="FISTP", .op={ {.f=F_ADDR_M | F_OPER_QI}, {.reg="ST"}, {0}, {0}}, .grp=GRP(X87FPU, DATAMOV, NONE),  },            /* desc=Store Integer and Pop */
 	{ .opcode1=0xE0, .m=MODOP_E, .ops=(x86_in_ops[]){ { .mnemonic="LOOPNZ", .op={ {.reg="rCX"}, {.f=F_ADDR_J | F_OPER_BS}, {0}, {0} },  .grp=GRP(GEN, BRANCH, COND), }, { .mnemonic="LOOPNE", .op={ {.reg="rCX"}, {0}, {0}, {0} },  .grp=GRP(GEN, BRANCH, COND), },  }, .ops_count=2,  },            /* desc=Decrement count; Jump short if count!=0 and ZF=0 */
 	{ .opcode1=0xE1, .m=MODOP_E, .ops=(x86_in_ops[]){ { .mnemonic="LOOPZ", .op={ {.reg="rCX"}, {.f=F_ADDR_J | F_OPER_BS}, {0}, {0} },  .grp=GRP(GEN, BRANCH, COND), }, { .mnemonic="LOOPE", .op={ {.reg="rCX"}, {0}, {0}, {0} },  .grp=GRP(GEN, BRANCH, COND), },  }, .ops_count=2,  },            /* desc=Decrement count; Jump short if count!=0 and ZF=1 */

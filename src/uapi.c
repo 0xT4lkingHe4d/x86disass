@@ -19,8 +19,10 @@ ok_t get_imm(instr_dat_t *in) {
 
 __u8 get_oper_sz(instr_dat_t *in, operand *p) {
 	switch (p->x_origin.t) {
-		case X_IMM:		return p->sz;
 		case X_MODRM:	return p->disp_sz;
+		case X_IMM:
+		default:
+			return p->sz;
 	}
 	return 0;
 }
@@ -123,7 +125,7 @@ __u8 get_rip_val(instr_dat_t *in, __u64 *v) {
 __s8 get_rip_ptr_addr(instr_dat_t *in, void *off, __u64 *v) {
 	__u8 plmin = get_rip_val(in, v);
 	if (!plmin) return -1;
-	*v = (off + in->in_sz + ((plmin == u'-') ? (__s64)( -( ~*v+1 ) ) : *v));
+	*v = (__u64)(off + in->in_sz + ((plmin == u'-') ? (__s64)( -( ~*v+1 ) ) : *v));
 	// *v = off + *v + in->in_sz;//((plmin == '+') ? in->in_sz : 0);
 	return 0;
 }
@@ -141,7 +143,7 @@ __s8 get_rip_imm_oper_ndx(instr_dat_t *in) {
 operand *get_rip_imm_oper(instr_dat_t *in) {
 	foreach_operand(oper, in) {
 		if (oper->rip && (oper->imm || oper->disp))
-			return in;
+			return oper;
 	}
 	return NULL;
 }

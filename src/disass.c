@@ -664,7 +664,7 @@ int init_instr(__u8 t, instr_dat_t *ret, void *base) {
 	const __u8 *saved_cpy = cpy;
 	instr_dat_t saved_ret = *ret;
 
-	instr_dat_t *min = NULL;	// to move forward from bad fits
+	const instr *min = NULL;	// to move forward from bad fits
 	foreach(i, 30) {
 		cpy = saved_cpy;
 		memcpy(ret, &saved_ret, sizeof(instr_dat_t));
